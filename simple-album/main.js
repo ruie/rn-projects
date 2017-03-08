@@ -6,9 +6,11 @@ import {
   Text
 } from 'react-native';
 
+import Header from './components/header'
+
 const App = () => {
   return (
-    <Text>Sample Text</Text>
+    <Header logoTitle={'Albums'} />
   );
 }
 
