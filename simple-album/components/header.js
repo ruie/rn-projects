@@ -2,10 +2,7 @@
 'use strict'
 
 import React from 'react';
-import {
-  View,
-  Text
-} from 'react-native';
+import { View, Text } from 'react-native';
 
 const Header = (props) => {
 
@@ -30,7 +27,7 @@ const styles = {
     paddingTop: 15,
     height: 60,
     shadowOffset: {
-      width: 0,
+      width: 1,
       height: 2
     },
     shadowOpacity: 0.1,

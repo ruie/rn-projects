@@ -2,15 +2,17 @@
 
 import Exponent from 'exponent';
 import React from 'react';
-import {
-  Text
-} from 'react-native';
+import { Text, View } from 'react-native';
 
-import Header from './components/header'
+import Header from './components/Header';
+import AlbumList from './components/AlbumList';
 
 const App = () => {
   return (
-    <Header logoTitle={'Albums'} />
+    <View>
+      <Header logoTitle={'Tinder'} />
+      <AlbumList />
+    </View>
   );
 }
 
