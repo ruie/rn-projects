@@ -10,7 +10,7 @@ import AlbumList from './components/AlbumList';
 const App = () => {
   return (
     <View>
-      <Header logoTitle={'Tinder'} />
+      <Header logoTitle={"Recipify"}/>
       <AlbumList />
     </View>
   );
