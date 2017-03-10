@@ -1,12 +1,14 @@
 'use strict';
 
 import React from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, TouchableOpacity } from 'react-native';
 
 import Card from './Card';
 import CardSection from './CardSection';
+import BuyButton from './BuyButton';
 
 const AlbumDetail = (props) => {
+
   const { title, artist, thumbnail_image, image } = props.album;
   const {
     albumThumbnailWrap,
@@ -34,6 +36,10 @@ const AlbumDetail = (props) => {
         <Image
           style={imageStyle}
           source={{uri: image}}/>
+      </CardSection>
+
+      <CardSection>
+        <BuyButton />
       </CardSection>
     </Card>
   );

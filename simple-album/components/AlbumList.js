@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import { View } from 'react-native';
+import { ScrollView } from 'react-native';
 import axios from 'axios';
 
 import AlbumDetails from './AlbumDetails';
@@ -27,10 +27,10 @@ class AlbumList extends React.Component {
 
   render() {
     return (
-    <View>
-      {this.renderAlbums()}
-    </View>
-  )
+      <ScrollView>
+        {this.renderAlbums()}
+      </ScrollView>
+    )
   }
 }
 
