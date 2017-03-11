@@ -1,8 +1,8 @@
 {
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 815,
-  "expoServerNgrokUrl": "https://ie-zin.pragmaticbot.simple-album.exp.direct",
-  "packagerNgrokUrl": "https://packager.ie-zin.pragmaticbot.simple-album.exp.direct",
-  "ngrokPid": 831
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
