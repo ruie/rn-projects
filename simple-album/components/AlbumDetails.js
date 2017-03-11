@@ -39,7 +39,9 @@ const AlbumDetail = (props) => {
       </CardSection>
 
       <CardSection>
-        <BuyButton goto={() => Linking.openURL(url)} title={title}/>
+        <BuyButton goto={() => Linking.openURL(url)} title={title}>
+          <Text>Buy Now</Text>
+        </BuyButton>
       </CardSection>
     </Card>
   );

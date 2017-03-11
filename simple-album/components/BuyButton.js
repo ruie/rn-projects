@@ -21,7 +21,6 @@ const styles = {
     fontWeight: 'bold',
     alignSelf: 'center',
     justifyContent: 'center',
-    alignItems: 'center'
   }
 }
 
