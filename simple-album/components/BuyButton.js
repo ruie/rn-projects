@@ -12,7 +12,7 @@ const BuyButton = ({ goto, title }) => {
 const styles = {
   container: {
     flex: 1,
-    borderColor: '#000',
+    borderColor: '#3B5998',
     borderWidth: 1,
     padding: 5,
     borderRadius: 5,
