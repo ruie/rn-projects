@@ -1,12 +1,28 @@
 import React from 'react';
-import { Text, TouchableHighlight } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 
-const BuyButton = () => {
+const BuyButton = ({ goto, title }) => {
   return (
-    <TouchableHighlight>
-      <Text>Buy Now</Text>
-    </TouchableHighlight>
+    <TouchableOpacity style={styles.container}onPress={goto}>
+      <Text style={styles.textStyle}>Buy {title}</Text>
+    </TouchableOpacity>
   );
+}
+
+const styles = {
+  container: {
+    flex: 1,
+    borderColor: '#000',
+    borderWidth: 1,
+    padding: 5,
+    borderRadius: 5,
+  },
+  textStyle: {
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
 }
 
 export default BuyButton;

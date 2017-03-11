@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import { Text, View, Image, TouchableOpacity } from 'react-native';
+import { Text, View, Image, TouchableOpacity, Linking } from 'react-native';
 
 import Card from './Card';
 import CardSection from './CardSection';
@@ -9,7 +9,7 @@ import BuyButton from './BuyButton';
 
 const AlbumDetail = (props) => {
 
-  const { title, artist, thumbnail_image, image } = props.album;
+  const { title, artist, thumbnail_image, image, url } = props.album;
   const {
     albumThumbnailWrap,
     albumThumbnail,
@@ -39,7 +39,7 @@ const AlbumDetail = (props) => {
       </CardSection>
 
       <CardSection>
-        <BuyButton />
+        <BuyButton goto={() => Linking.openURL(url)} title={title}/>
       </CardSection>
     </Card>
   );
