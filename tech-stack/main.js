@@ -1,5 +1,5 @@
 import Expo from 'expo';
-import App from './src/app';
+import App from './app';
 
 
 Expo.registerRootComponent(App);
