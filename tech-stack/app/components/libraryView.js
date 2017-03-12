@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import { View, ListView } from 'react-native';
+import { ListView } from 'react-native';
 import { connect } from 'react-redux';
 import ListItem from './listItem';
-
 
 class LibraryView extends Component {
 
   componentWillMount() {
-
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     });
@@ -16,7 +14,7 @@ class LibraryView extends Component {
   }
 
   renderRow(library) {
-    return <ListItem library={library} />
+    return <ListItem library={library} />;
   }
 
   render() {
@@ -31,6 +29,6 @@ class LibraryView extends Component {
 
 const mapStateToProps = state => {
   return { libraries: state.libraries };
-}
+};
 
 export default connect(mapStateToProps)(LibraryView);
