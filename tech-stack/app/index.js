@@ -1,4 +1,3 @@
-import Expo from 'expo';
 import React from 'react';
 import { View } from 'react-native';
 import { Provider } from 'react-redux';
@@ -10,12 +9,12 @@ import LibraryView from './components/libraryView';
 const App = () => {
   return (
     <Provider store={createStore(reducers)}>
-      <View style={{ flex: 1}}>
+      <View style={{ flex: 1 }} >
         <Header title="Tech Stack" />
         <LibraryView />
       </View>
     </Provider>
   );
-}
+};
 
 export default App;
