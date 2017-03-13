@@ -26,7 +26,7 @@ const AlbumDetail = (props) => {
             style={albumThumbnail}
             source={{ uri: thumbnail_image}} />
         </View>
-        <View style={albumMeta}>z
+        <View style={albumMeta}>
           <Text style={metaTitle}>{title}</Text>
           <Text>{artist}</Text>
         </View>
