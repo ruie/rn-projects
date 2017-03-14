@@ -7,11 +7,7 @@ import {
 class App extends Component {
   render() {
     return (
-      <View>
-        <Text>Hello</Text>
-        <Text>Hello</Text>
-        <Text>Hello</Text>
-      </View>
+      <View />
     );
   }
 }
