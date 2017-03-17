@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import Reducers from './reducers';
+
 import {
   View,
   Text
 } from 'react-native';
 
-const store = createStore(Reducer);
+import Reducers from './reducers';
+
+const store = createStore(Reducers);
 
 class App extends Component {
   render() {
