@@ -6,7 +6,8 @@ import firebase from 'firebase';
 
 import reducers from './reducers';
 import { config } from './config';
-import { Header } from './components/common';
+import { Header, } from './components/common';
+import LoginScreen from './components/loginScreen';
 
 const store = createStore(reducers);
 
@@ -24,7 +25,7 @@ class App extends Component {
       <Provider store={store}>
         <View style={{ flex: 1 }}>
           <Header title='Manager' />
-          <Text>Sasdaasdmple</Text>
+          <LoginScreen />
         </View>
       </Provider>
     );
