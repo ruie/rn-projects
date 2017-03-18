@@ -1,22 +1,30 @@
 import React, { Component } from 'react';
+import { View, Text } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+import firebase from 'firebase';
 
-import {
-  View,
-  Text
-} from 'react-native';
+import reducers from './reducers';
+import { config } from './config';
+import { Header } from './components/common';
 
-import Reducers from './reducers';
-
-const store = createStore(Reducers);
+const store = createStore(reducers);
 
 class App extends Component {
+  state = {
+
+  }
+
+  componentWillMount() {
+    firebase.initializeApp(config);
+  }
+
   render() {
     return (
       <Provider store={store}>
         <View style={{ flex: 1 }}>
-          <Text>Sample</Text>
+          <Header title='Manager' />
+          <Text>Sasdaasdmple</Text>
         </View>
       </Provider>
     );
