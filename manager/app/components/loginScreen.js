@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Text } from 'react-native';
 
-import { Card, CardSection, Input, Button } from './common';
-import { emailChanged, passwordChanged } from '../actions';
+import { Card, CardSection, Input, Button, Spinner } from './common';
+import { emailChanged, passwordChanged, loginUser } from '../actions';
 
 class LoginScreen extends Component {
 
@@ -14,8 +15,19 @@ class LoginScreen extends Component {
     this.props.passwordChanged(text);
   }
 
+  onLoginPress() {
+    const { email, password } = this.props;
+    this.props.loginUser({ email, password });
+  }
+
+  renderLoading() {
+    if (this.props.loading) {
+      return <Spinner />;
+    }
+    return <Button onPress={this.onLoginPress.bind(this)}>Log In</Button>;
+  }
+
   render() {
-    console.log(this.props);
     return (
       <Card>
         <CardSection>
@@ -37,8 +49,12 @@ class LoginScreen extends Component {
           />
         </CardSection>
 
+        <Text>
+          {this.props.status}
+        </Text>
+
         <CardSection>
-          <Button>Login</Button>
+          {this.renderLoading()}
         </CardSection>
 
       </Card>
@@ -47,12 +63,14 @@ class LoginScreen extends Component {
 }
 
 const mapStateToProps = ({ auth }) => {
-  const { email, password } = auth;
+  const { email, password, status, loading, user } = auth;
   return {
     email,
-    password
+    password,
+    status,
+    loading,
+    user
   };
 };
 
-
-export default connect(mapStateToProps, { emailChanged, passwordChanged })(LoginScreen);
+export default connect(mapStateToProps, { emailChanged, passwordChanged, loginUser })(LoginScreen);

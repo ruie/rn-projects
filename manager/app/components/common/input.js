@@ -7,6 +7,7 @@ const Input = ({ label, onChangeText, value, placeholder, secureTextEntry }) => 
     <View style={containerStyle}>
       <Text>{label}</Text>
       <TextInput
+        underlineColorAndroid={'transparent'}
         autoCapitalize={'none'}
         placeholder={placeholder}
         style={inputStyle}
