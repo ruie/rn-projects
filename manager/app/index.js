@@ -7,8 +7,7 @@ import firebase from 'firebase';
 
 import reducers from './reducers';
 import { config } from './config';
-import { Header } from './components/common';
-import LoginScreen from './components/loginScreen';
+import Router from './router';
 
 class App extends Component {
 
@@ -22,8 +21,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <View style={{ flex: 1 }}>
-          <Header title='Manager' />
-          <LoginScreen />
+          <Router />
         </View>
       </Provider>
     );
