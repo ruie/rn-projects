@@ -2,8 +2,14 @@ import Expo from 'expo';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
+import firebase from 'firebase';
+import { config } from './app/config';
 
 class App extends React.Component {
+
+  componentWillMount() {
+    firebase.initializeApp(config);
+  }
 
   authenticate = (token) => {
     const provider = firebase.auth.FacebookAuthProvider;
@@ -12,16 +18,19 @@ class App extends React.Component {
   }
 
   login = async () => {
-	const ADD_ID = 273131576444313
+	const ADD_ID = '273131576444313';
 	const options = {
-		permissions: ['public_profile', 'email'],
+		permissions: ['public_profile'],
 	}
 	const {type, token} = await Expo.Facebook.logInWithReadPermissionsAsync(ADD_ID, options)
 	if (type === 'success') {
 		const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`)
 		console.log(await response.json());
+    console.log(await response.json().picture);
 		this.authenticate(token);
-	}
+	} else {
+    console.log(type);
+  }
 }
 
   render() {
