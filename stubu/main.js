@@ -20,7 +20,7 @@ class App extends React.Component {
   login = async () => {
 	const ADD_ID = '273131576444313';
 	const options = {
-		permissions: ['public_profile'],
+		permissions: ['public_profile', 'email'],
 	}
 	const {type, token} = await Expo.Facebook.logInWithReadPermissionsAsync(ADD_ID, options)
 	if (type === 'success') {
