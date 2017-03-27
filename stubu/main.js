@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import firebase from 'firebase';
 import { config } from './app/config';
+import Header from './app/components'
 
 class App extends React.Component {
 
@@ -36,6 +37,7 @@ class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <Header />
         <Text>Open up main.js to start working on your app!</Text>
         <Button
           raised
