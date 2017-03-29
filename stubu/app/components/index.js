@@ -1,19 +1,20 @@
+import React, { Component } from 'react';
 import {
-  React,
-  {
-    Component,
-    Text,
-    View
-  }
+  View,
+  Text
 } from 'react-native';
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
 
       <View>
         <Text>
-          Hello world
+          {this.props.title}
         </Text>
       </View>
 
@@ -21,4 +22,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export { Header };
