@@ -36,9 +36,10 @@ const styles = StyleSheet.create({
   },
   loginButton: {
     width: 250,
+    marginTop: 50
   },
   logo: {
-    fontSize: 30
+    fontSize: 30,
   }
 });
 

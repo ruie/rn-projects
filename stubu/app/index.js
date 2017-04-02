@@ -3,10 +3,13 @@ import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { Button, SocialIcon } from 'react-native-elements';
 import firebase from 'firebase';
+import { Router, Scene, Actions } from 'react-native-router-flux';
+import { Ionicons } from '@expo/vector-icons';
 
 import { config } from './config';
 import { Header } from './components/common';
 import LoginScreen from './components/LoginScreen';
+import MainScreen from './components/MainScreen';
 
 class App extends React.Component {
 
@@ -49,22 +52,47 @@ class App extends React.Component {
     }
   };
 
-  renderStatus() {
-    if(this.state.isLogin){
+    renderNav() {
       return (
-        <View>
-          <Text>Welcome {this.state.user.name}</Text>
-          <Image style={styles.picSize} source={{ uri: this.state.profile }}/>
+        <View style={{ flex: 1}}>
+          <Router>
+            <Scene key="root">
+              <Scene key="login" component={LoginScreen} title="Login" initial={true} />
+              <Scene key="main" component={MainScreen} title="Main" />
+            </Scene>
+          </Router>
         </View>
       );
     }
-    return <LoginScreen onPress={ this.login.bind(this) }/>;
+
+  renderStatus() {
+    switch (this.state.isLogin) {
+      case true:
+      return (
+        <View style={{ zIndex: 99}}>
+          <Header title={'Stubu Logo'} style={styles.logoMain} />
+          <Text style={styles.welcome}>Hello! {this.state.user.name}</Text>
+          <Image style={styles.picSize} source={{ uri: this.state.profile }}/>
+          <MainScreen toProps={this.state} />
+        </View>
+      );
+      case false:
+      return (
+        <View>
+          <Ionicons screen="setting" name="ios-bookmarks" style={{ textAlign: 'center'}} size={60} color="#00328B" />
+          <Header title={'Stubu'} style={styles.logoMain} />
+          <LoginScreen onPress={ this.login.bind(this) }/>
+        </View>);
+      default:
+        return <View />;
+    }
+
   }
 
   render() {
     return (
         <View style={styles.container}>
-          <Header title={'Stubu App: Logo here'} style={styles.logo} />
+
           {this.renderStatus()}
         </View>
     );
@@ -83,11 +111,29 @@ const styles = StyleSheet.create({
     width: 250
   },
   logo: {
-    fontSize: 30
+    flexDirection: 'column',
+    fontSize: 30,
+    fontWeight: 'bold',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center'
+  },
+  logoMain: {
+    marginTop: 20,
+
+    fontSize: 30,
+    fontWeight: 'bold',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center'
+  },
+  welcome: {
+    textAlign: 'center'
   },
   picSize: {
-    width: 200,
-    height: 200
+    width: 100,
+    height: 100,
+    textAlign: 'center'
   }
 });
 
