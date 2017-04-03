@@ -9,13 +9,13 @@ import AlbumDetails from './AlbumDetails';
 class AlbumList extends React.Component {
 
   state = {
-    albums: []
+    posts: []
   };
 
   componentWillMount() {
-    let url = 'https://rallycoding.herokuapp.com/api/music_albums';
+    let url = 'https://jsonplaceholder.typicode.com/posts/10';
     axios.get(url)
-      .then(output => this.setState({albums: output.data}));
+      .then(output => this.setState({posts: output.data}));
   }
 
   renderAlbums() {

@@ -1,9 +1,6 @@
 const INITIAL_STATE = {
-  email: '',
-  password: '',
   user: null,
-  status: '',
-  loading: false
+  status: ''
 };
 
 export default (state = INITIAL_STATE, action) => {
