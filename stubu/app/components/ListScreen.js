@@ -16,7 +16,8 @@ class ListScreen extends React.Component {
   }
 
   state = {
-    posts: []
+    posts: [],
+    
   }
 
   async componentWillMount() {
