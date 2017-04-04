@@ -1,14 +1,13 @@
 'use strict';
 
 import React from 'react';
-import { Text, View, Image, TouchableOpacity, Linking } from 'react-native';
+import { Text, View, Image, Linking } from 'react-native';
 
 import Card from './Card';
 import CardSection from './CardSection';
 import BuyButton from './BuyButton';
 
-const AlbumDetail = (props) => {
-
+const AlbumDetail = (props) =>  {
   const { title, artist, thumbnail_image, image, url } = props.album;
   const {
     albumThumbnailWrap,
@@ -24,7 +23,8 @@ const AlbumDetail = (props) => {
         <View style={albumThumbnailWrap}>
           <Image
             style={albumThumbnail}
-            source={{ uri: thumbnail_image}} />
+            source={{ uri: thumbnail_image }}
+          />
         </View>
         <View style={albumMeta}>
           <Text style={metaTitle}>{title}</Text>
@@ -35,7 +35,8 @@ const AlbumDetail = (props) => {
       <CardSection>
         <Image
           style={imageStyle}
-          source={{uri: image}}/>
+          source={{ uri: image }}
+        />
       </CardSection>
 
       <CardSection>
@@ -45,7 +46,7 @@ const AlbumDetail = (props) => {
       </CardSection>
     </Card>
   );
-}
+};
 
 const styles = {
   albumMeta: {
@@ -71,6 +72,6 @@ const styles = {
     flex: 1,
     width: null
   }
-}
+};
 
 export default AlbumDetail;

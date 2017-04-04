@@ -10,11 +10,12 @@ import AlbumList from './components/AlbumList';
 const App = () => {
   return (
     <View style={{flex: 1}}>
-      <Header logoTitle={"Simple Album List"}/>
+      <Header logoTitle={'Simple Album List'}
+      />
       <AlbumList />
     </View>
   );
-}
+};
 
 Exponent.registerRootComponent(App);
 // AppRegister.registerComponent('simple-album', () => App);

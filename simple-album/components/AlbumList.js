@@ -13,9 +13,9 @@ class AlbumList extends React.Component {
   };
 
   componentWillMount() {
-    let url = 'https://jsonplaceholder.typicode.com/posts/10';
+    const url = 'https://jsonplaceholder.typicode.com/posts/10';
     axios.get(url)
-      .then(output => this.setState({posts: output.data}));
+      .then(output => this.setState({ posts: output.data }));
   }
 
   renderAlbums() {
