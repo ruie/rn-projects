@@ -9,7 +9,7 @@ import EmployeeCreate from './components/employeeCreate';
 const RouterComponent = () => {
   return (
     <Router>
-      <Scene key={'auth'} >
+      <Scene key={'authentication'} >
         <Scene key={'login'} component={LoginScreen} title={'Auth'} hideNavBar/>
       </Scene>
 
