@@ -10,7 +10,7 @@ import AlbumList from './components/AlbumList';
 const App = () => {
   return (
     <View style={{flex: 1}}>
-      <Header logoTitle={'Simple Album List'}
+      <Header logoTitle={'Album List'}
       />
       <AlbumList />
     </View>
