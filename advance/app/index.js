@@ -7,7 +7,7 @@ class App extends Component {
     return (
       <View>
         <Text>
-          Ruie
+          Coming soon
         </Text>
       </View>
     );
