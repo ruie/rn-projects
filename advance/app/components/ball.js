@@ -5,10 +5,18 @@ import {
 } from 'react-native';
 
 export class Ball extends Component {
+  componentWillMount() {
+    this.position = new Animated.ValueXY(0, 0);
+    Animated.spring(this.position, {
+      toValue: { x: 20, y: 50 }
+    }).start();
+  }
 
   render() {
     return (
-      <View style={styles.ball} />
+      <Animated.View style={this.position.getLayout()} >
+        <View style={styles.ball} />
+      </Animated.View>
     );
   }
 }

@@ -1,15 +1,15 @@
 {
-  "name": "simple-album",
+  "name": "album",
   "description": "An empty new project",
-  "slug": "simple-album",
+  "slug": "album",
   "privacy": "public",
   "sdkVersion": "16.0.0",
   "version": "1.0.0",
   "orientation": "portrait",
   "primaryColor": "#cccccc",
-  "icon": "https://s3.amazonaws.com/exp-brand-assets/ExponentEmptyManifest_192.png",
+  "icon": "./assets/icons/app.png",
   "loading": {
-    "icon": "https://s3.amazonaws.com/exp-brand-assets/ExponentEmptyManifest_192.png",
+    "icon": "./assets/icons/loading.png",
     "hideExponentText": false
   },
   "packagerOpts": {
