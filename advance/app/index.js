@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
+import { Ball } from './components/ball';
 
 class App extends Component {
 
   render() {
     return (
       <View>
-        <Text>
-          Coming soon
-        </Text>
+        <Ball />
       </View>
     );
   }
