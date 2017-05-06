@@ -6,8 +6,6 @@ import {
   FACEBOOK_LOGIN_FAIL
 } from './types';
 
-import { fbID } from '../config';
-
 export const facebookLogin = () => async dispatch => {
   let token = await AsyncStorage.getItem('fb_token');
 
@@ -21,7 +19,7 @@ export const facebookLogin = () => async dispatch => {
 };
 
 const doFacebookLogin = async dispatch => {
-  let { type, token } = await Facebook.logInWithReadPermissionsAsync(fbID, {
+  let { type, token } = await Facebook.logInWithReadPermissionsAsync('273131576444313', {
     permissions: ['public_profile']
   });
 

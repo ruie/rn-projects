@@ -7,6 +7,4 @@ const config = {
   messagingSenderId: "890316749739"
 };
 
-const fbID = '273131576444313';
-
-export { config, fbID };
+export { config };

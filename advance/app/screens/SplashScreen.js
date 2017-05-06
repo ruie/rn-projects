@@ -10,8 +10,18 @@ class SplashScreen extends Component {
     tabBarVisible: false
   }
 
-  componentDidMount() {
-    AsyncStorage.removeItem('fb_token');
+  componentWillMount() {
+    this.onAuthComplete(this.props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.onAuthComplete(nextProps);
+  }
+
+  onAuthComplete(props) {
+    if (props.token) {
+      this.props.navigation.navigate('home');
+    }
   }
 
   render() {
@@ -53,4 +63,8 @@ const styles = {
   }
 };
 
-export default connect(null, actions)(SplashScreen);
+function mapStateToProps({ auth }) {
+  return { token: auth.token };
+}
+
+export default connect(mapStateToProps, actions)(SplashScreen);
