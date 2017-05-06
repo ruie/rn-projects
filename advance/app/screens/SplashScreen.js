@@ -1,7 +1,10 @@
+import { AppLoading } from 'expo';
 import React, { Component } from 'react';
 import { View, Image, AsyncStorage } from 'react-native';
 import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
+import _ from 'lodash';
+
 import * as actions from '../actions';
 
 class SplashScreen extends Component {
@@ -10,8 +13,19 @@ class SplashScreen extends Component {
     tabBarVisible: false
   }
 
-  componentWillMount() {
-    this.onAuthComplete(this.props);
+  state = {
+    token: null
+  }
+
+  async componentWillMount() {
+    let token = await AsyncStorage.getItem('fb_token');
+
+    if (token) {
+      this.props.navigation.navigate('home');
+      this.setState({ token });
+    } else {
+      this.setState({ token: null });
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -25,6 +39,10 @@ class SplashScreen extends Component {
   }
 
   render() {
+    if (_.isNull(this.state.token)) {
+      return <AppLoading />;
+    }
+
     return (
       <View style={styles.container}>
         <Image
