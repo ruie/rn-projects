@@ -6,10 +6,11 @@ import {
 
 export const fetchRecipes = (search, callback) => async (dispatch) => {
   try {
-    const url = "http://food2fork.com/api/search?key=08052bb590612bcb4e264d504283ee80&sort=r&q=" + search;
+    const url = "http://www.recipepuppy.com/api/?p=20&q=" + search;
     console.log(url);
     let { data } = await axios.get(url);
-    dispatch({ type: FETCH_RECIPES, payload: data });
+    console.log(data.results);
+    dispatch({ type: FETCH_RECIPES, payload: data.results });
     callback();
   } catch (e) {
     console.error(e);

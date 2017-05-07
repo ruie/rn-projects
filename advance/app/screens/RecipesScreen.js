@@ -10,16 +10,29 @@ class RecipesScreen extends Component {
   static navigationOptions = {
     title: 'Recipes',
     style: {
-      marginTop: Platform.OS === 'android' ? 24 : 0
+      paddingTop: Platform.OS === 'android' ? 24 : 0
     }
   }
 
   render() {
     return (
       <View>
-        <Button
+        {/* <Button
           onPress={() => this.props.navigation.navigate('recipeInfo')}
-        />
+        /> */}
+        <List>
+          <FlatList
+            data={this.props.recipes}
+            renderItem={({ item }) => (
+              <ListItem
+                title={`${item.title}`}
+                subtitle={item.ingredients}
+              />
+            )}
+            keyExtractor={item => item.title}
+          />
+        </List>
+
       </View>
     );
   }
@@ -29,10 +42,10 @@ const styles = {
   container: {
     flex: 1
   }
-}
+};
 
 function mapStateToProps({ recipes }) {
-  return { recipes: recipes.results };
+  return { recipes };
 }
 
 export default connect(mapStateToProps, actions)(RecipesScreen);
