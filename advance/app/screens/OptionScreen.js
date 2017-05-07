@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TextInput, Image } from 'react-native';
+import { View, TextInput, Image, ToastAndroid } from 'react-native';
 import { Button } from 'react-native-elements';
 import { ImagePicker } from 'expo';
 import Clarifai from 'clarifai';
@@ -40,8 +40,10 @@ class OptionScreen extends Component {
       let tag = res.data.outputs[0].data.concepts[0].name;
       console.log(tag);
       // console.log('mydata:', JSON.stringify(myData));
+      ToastAndroid.show(tag, ToastAndroid.SHORT);
       return tag;
     }).then((tag) => this.fetchAndPushRecipe(tag));
+
   }
 
   captureImageNutrients = async () => {
@@ -54,6 +56,7 @@ class OptionScreen extends Component {
       let tag = res.data.outputs[0].data.concepts[0].name;
       console.log(tag);
       // console.log('mydata:', JSON.stringify(myData));
+      ToastAndroid.show(tag, ToastAndroid.SHORT);
       return tag;
     }).then((tag) => this.fetchAndPushNutrition(tag));
   }
