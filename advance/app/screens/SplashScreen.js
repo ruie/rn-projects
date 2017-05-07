@@ -1,4 +1,3 @@
-import { AppLoading } from 'expo';
 import React, { Component } from 'react';
 import { View, Image, AsyncStorage } from 'react-native';
 import { Button } from 'react-native-elements';
@@ -32,6 +31,16 @@ class SplashScreen extends Component {
     if (props.token) {
       this.props.navigation.navigate('options');
     }
+  }
+
+  replaceScreen = () => {
+    const { location, position } = this.props.navigation.state.params;
+    this.props.navigation.dispatch({
+      type: 'ReplaceCurrentScreen',
+      routeName: 'options',
+      params: { location, position },
+      key: 'options'
+    });
   }
 
   render() {
