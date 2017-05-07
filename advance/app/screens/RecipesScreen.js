@@ -6,13 +6,6 @@ class RecipesScreen extends Component {
 
   static navigationOptions = {
     title: 'Recipes',
-    headerKey: ({ navigate }) => {
-      return {
-        right: (
-          <Button title="Recipe" onPress={() => navigate('recipe')} />
-        )
-      };
-    },
     style: {
       marginTop: Platform.OS === 'android' ? 24 : 0
     }
@@ -21,6 +14,9 @@ class RecipesScreen extends Component {
   render() {
     return (
       <View>
+        <Button
+          onPress={() => this.props.navigation.navigate('recipeInfo')}
+        />
         <Text>RecipesScreen</Text>
         <Text>RecipesScreen</Text>
         <Text>RecipesScreen</Text>

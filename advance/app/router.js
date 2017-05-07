@@ -6,17 +6,15 @@ import RecipesScreen from './screens/RecipesScreen';
 import RecipeInfoScreen from './screens/RecipeInfoScreen';
 import NutritionInfoScreen from './screens/NutritionInfoScreen';
 
-const recipe = StackNavigator({
-  recipes: { screen: RecipesScreen },
+const recipeNavigator = StackNavigator({
+  recipeItems: { screen: RecipesScreen },
   recipeInfo: { screen: RecipeInfoScreen }
 });
 
 const options = StackNavigator({
   option: { screen: OptionScreen },
   nutrients: { screen: NutritionInfoScreen },
-  recipe: {
-    screen: recipe
-  }
+  recipes: { screen: recipeNavigator },
 }, {
   headerMode: 'none'
 });
@@ -48,8 +46,6 @@ const Navigator = TabNavigator({
     screen: options
   }
 }, {
-  tabBarOptions: {
-  },
   navigationOptions: {
     tabBarVisible: false
   },

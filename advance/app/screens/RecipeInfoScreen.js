@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, Platform } from 'react-native';
 import { Button } from 'react-native-elements';
 
+
 class RecipeInfoScreen extends Component {
+
+  static navigationOptions = {
+    title: 'Details',
+    style: {
+      marginTop: Platform.OS === 'android' ? 24 : 0
+    }
+  }
 
   render() {
     return (

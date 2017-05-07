@@ -15,7 +15,7 @@ class OptionScreen extends Component {
     });
 
     if (!result.cancelled) {
-      this.props.navigation.navigate('recipe');
+      this.props.navigation.navigate('recipes');
       this.setState({ image: result.uri });
     }
   }
