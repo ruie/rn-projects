@@ -1,23 +1,29 @@
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, base64image } from 'react-native';
 import { Button } from 'react-native-elements';
 import { ImagePicker } from 'expo';
+ import Clarifai from 'clarifai';
+
+const app = new Clarifai.App(
+   'f9Yuf8R8ya_1uG45M8mseffbd2rajohrdBOw9Dgc',
+   'dfXycYNdAE3XFOTZZgFuxMrPxihGhaFcmUsmuNbu'
+ );
 
 class OptionScreen extends Component {
-
   state = {
     image: null
   }
 
   captureImageRecipe = async () => {
-    let result = await ImagePicker.launchCameraAsync({
-      aspect: [4, 3]
-    });
+    let url = 'https://www.organicfacts.net/wp-content/uploads/2013/05/Banana3.jpg';
 
-    if (!result.cancelled) {
-      this.props.navigation.navigate('recipes');
-      this.setState({ image: result.uri });
-    }
+    app.models.predict(Clarifai.GENERAL_MODEL, url).then(
+    function (res) {
+      console.log('response:', JSON.stringify(res.data.outputs[0].data.concepts[0].name));
+      console.log('response:', JSON.stringify(res.data.outputs[0].data.concepts[0].value));
+      // let tag = res.data.outputs[0].data.concepts[0].name;
+      // console.log('mydata:', JSON.stringify(myData));
+    });
   }
 
   captureImageNutrients= async () => {
@@ -42,6 +48,7 @@ class OptionScreen extends Component {
             source={{ uri: 'https://image.ibb.co/jGQOMQ/logo.png' }}
             style={styles.logo}
           />
+
           <Button
             buttonStyle={styles.top}
             borderRadius={5}
