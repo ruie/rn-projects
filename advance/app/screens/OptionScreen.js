@@ -15,17 +15,22 @@ const app = new Clarifai.App(
 class OptionScreen extends Component {
 
   state = {
-    image: null,
+    image: 'http://image.ibb.co/k9Z35k/pizza.jpg',
   }
 
-  fetchAndPush = (tag) => {
+  fetchAndPushRecipe = (tag) => {
     this.props.fetchRecipes(tag, () => {
       this.props.navigation.navigate('recipes');
     });
   }
 
-  captureImageRecipe = () => {
+  fetchAndPushNutrition= (tag) => {
+    this.props.fetchNutrition(tag, () => {
+      this.props.navigation.navigate('nutrients');
+    });
+  }
 
+  captureImageRecipe = () => {
     let url = this.state.image;
 
     app.models.predict(Clarifai.GENERAL_MODEL, url).then(
@@ -36,18 +41,21 @@ class OptionScreen extends Component {
       console.log(tag);
       // console.log('mydata:', JSON.stringify(myData));
       return tag;
-    }).then((tag) => this.fetchAndPush(tag));
+    }).then((tag) => this.fetchAndPushRecipe(tag));
   }
 
-  captureImageNutrients= async () => {
-    let result = await ImagePicker.launchCameraAsync({
-      aspect: [4, 3]
-    });
+  captureImageNutrients = async () => {
+    let url = this.state.image;
 
-    if (!result.cancelled) {
-      this.props.navigation.navigate('nutrients');
-      this.setState({ image: result.uri });
-    }
+    app.models.predict(Clarifai.GENERAL_MODEL, url).then(
+    function (res) {
+      console.log('response:', JSON.stringify(res.data.outputs[0].data.concepts[0].name));
+      console.log('response:', JSON.stringify(res.data.outputs[0].data.concepts[0].value));
+      let tag = res.data.outputs[0].data.concepts[0].name;
+      console.log(tag);
+      // console.log('mydata:', JSON.stringify(myData));
+      return tag;
+    }).then((tag) => this.fetchAndPushNutrition(tag));
   }
 
   render() {
@@ -66,7 +74,7 @@ class OptionScreen extends Component {
           <TextInput
             underlineColorAndroid="#fff"
             placeholder="Input Image URL Here"
-            style={{ height: 50, width: 250, backgroundColor: '#fff', paddingLeft: 15, paddingRight: 15 }}
+            style={{ height: 50, width: 300, backgroundColor: '#fff', paddingLeft: 15, paddingRight: 15 }}
             onChangeText={(link) => this.setState({ image: link })}
             value={this.state.text}
           />

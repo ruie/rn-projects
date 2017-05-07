@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Platform, FlatList } from 'react-native';
+import { View, Platform, FlatList, Linking } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 
@@ -27,6 +27,7 @@ class RecipesScreen extends Component {
               <ListItem
                 title={`${item.title}`}
                 subtitle={item.ingredients}
+                onPress={() => Linking.openURL(item.href)}
               />
             )}
             keyExtractor={item => item.title}

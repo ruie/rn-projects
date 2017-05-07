@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, Platform, FlatList } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
-
 import * as actions from '../actions';
 
 class SavedScreen extends Component {
