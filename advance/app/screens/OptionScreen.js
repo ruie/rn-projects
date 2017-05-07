@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button, FormLabel, FormInput } from 'react-native-elements';
 import { ImagePicker } from 'expo';
 import Clarifai from 'clarifai';
 import { connect } from 'react-redux';
@@ -15,7 +15,7 @@ const app = new Clarifai.App(
 class OptionScreen extends Component {
 
   state = {
-    image: null
+    image: null,
   }
 
   fetchAndPush = (tag) => {
@@ -26,7 +26,7 @@ class OptionScreen extends Component {
 
   captureImageRecipe = () => {
 
-    let url = 'http://dreamicus.com/data/apple/apple-04.jpg';
+    let url = this.state.image;
 
     app.models.predict(Clarifai.GENERAL_MODEL, url).then(
     function (res) {
@@ -51,6 +51,7 @@ class OptionScreen extends Component {
   }
 
   render() {
+    console.log(this.state.image);
     return (
       <View style={styles.container}>
         <Image
@@ -60,6 +61,15 @@ class OptionScreen extends Component {
           <Image
             source={{ uri: 'https://image.ibb.co/jGQOMQ/logo.png' }}
             style={styles.logo}
+          />
+
+          <FormLabel
+            labelStyle={{ color: 'white', fontWeight: 'bold', fontSize: 18 }}
+          >Input Image URL</FormLabel>
+          <FormInput
+            underlineColorAndroid="#eee"
+            containerStyle={{ backgroundColor: '#eee', width: 300, marginTop: 10 }}
+            onChangeText={(link) => this.setState({ image: link })}
           />
 
           <Button

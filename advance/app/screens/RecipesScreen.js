@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, Platform, FlatList } from 'react-native';
-import { Button, Icon, List, ListItem } from 'react-native-elements';
+import { View, Platform, FlatList } from 'react-native';
+import { List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 
 import * as actions from '../actions';
