@@ -1,28 +1,39 @@
 import { TabNavigator, StackNavigator } from 'react-navigation';
 
-import {
-  HomeScreen,
-  CameraScreen,
-  ListScreen,
-  RecipeScreen,
-} from './screens';
-
 import SplashScreen from './screens/SplashScreen';
+import OptionScreen from './screens/OptionScreen';
+import CameraScreen from './screens/CameraScreen';
+import RecipesScreen from './screens/RecipesScreen';
+import RecipeInfoScreen from './screens/RecipeInfoScreen';
+import NutritionInfoScreen from './screens/NutritionInfoScreen';
 
-const MainNavigator = TabNavigator({
-  splash: { screen: SplashScreen },
-  main: {
-    screen: TabNavigator({
-      home: { screen: HomeScreen },
-      camera: { screen: CameraScreen },
-      view: {
-        screen: StackNavigator({
-          list: { screen: ListScreen },
-          recipe: { screen: RecipeScreen }
-        })
-      }
-    })
-  }
+const recipe = StackNavigator({
+  recipes: { screen: RecipesScreen },
+  recipeInfo: { screen: RecipeInfoScreen }
 });
 
-export default MainNavigator;
+const nutrients = StackNavigator({
+  nutrientInfo: { screen: NutritionInfoScreen }
+});
+
+const Navigator = TabNavigator({
+  splash: { screen: SplashScreen },
+  options: { screen: OptionScreen },
+  camera: { screen: CameraScreen },
+  recipe: {
+    screen: recipe
+  },
+  nutrients: {
+    screen: nutrients
+  }
+}, {
+  tabBarOptions: {
+  },
+  navigationOptions: {
+    tabBarVisible: false
+  },
+  lazyLoad: true,
+  swipeEnabled: false,
+});
+
+export default Navigator;

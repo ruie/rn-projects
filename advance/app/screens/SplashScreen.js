@@ -3,25 +3,21 @@ import React, { Component } from 'react';
 import { View, Image, AsyncStorage } from 'react-native';
 import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
-import _ from 'lodash';
 
 import * as actions from '../actions';
 
 class SplashScreen extends Component {
-
-  static navigationOptions = {
-    tabBarVisible: false
-  }
 
   state = {
     token: null
   }
 
   async componentWillMount() {
+    // AsyncStorage.removeItem('fb_token');
     let token = await AsyncStorage.getItem('fb_token');
 
     if (token) {
-      this.props.navigation.navigate('home');
+      this.props.navigation.navigate('options');
       this.setState({ token });
     } else {
       this.setState({ token: null });
@@ -34,23 +30,19 @@ class SplashScreen extends Component {
 
   onAuthComplete(props) {
     if (props.token) {
-      this.props.navigation.navigate('home');
+      this.props.navigation.navigate('options');
     }
   }
 
   render() {
-    if (_.isNull(this.state.token)) {
-      return <AppLoading />;
-    }
-
     return (
       <View style={styles.container}>
         <Image
           style={styles.bg}
-          source={{ uri: 'https://image.ibb.co/iur7Fk/bg.png' }}
-        >
+          source={{ uri: 'https://image.ibb.co/iur7Fk/bg.png' }} >
           <Button
             large
+            borderRadius={5}
             icon={{ name: 'facebook', type: 'font-awesome' }}
             title={'Login with Facebook'}
             onPress={() => this.props.facebookLogin()}
