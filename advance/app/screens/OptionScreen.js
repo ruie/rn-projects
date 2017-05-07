@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
-import { Button, FormLabel, FormInput } from 'react-native-elements';
+import { View, TextInput, Image } from 'react-native';
+import { Button } from 'react-native-elements';
 import { ImagePicker } from 'expo';
 import Clarifai from 'clarifai';
 import { connect } from 'react-redux';
@@ -63,13 +63,12 @@ class OptionScreen extends Component {
             style={styles.logo}
           />
 
-          <FormLabel
-            labelStyle={{ color: 'white', fontWeight: 'bold', fontSize: 18 }}
-          >Input Image URL</FormLabel>
-          <FormInput
-            underlineColorAndroid="#eee"
-            containerStyle={{ backgroundColor: '#eee', width: 300, marginTop: 10 }}
+          <TextInput
+            underlineColorAndroid="#fff"
+            placeholder="Input Image URL Here"
+            style={{ height: 50, width: 250, backgroundColor: '#fff', paddingLeft: 15, paddingRight: 15 }}
             onChangeText={(link) => this.setState({ image: link })}
+            value={this.state.text}
           />
 
           <Button

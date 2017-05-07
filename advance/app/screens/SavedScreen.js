@@ -48,4 +48,4 @@ function mapStateToProps({ recipes }) {
   return { recipes };
 }
 
-export default connect(mapStateToProps, actions)(SavedScreen);
+export default SavedScreen;
