@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, Image, base64image } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 import { ImagePicker } from 'expo';
- import Clarifai from 'clarifai';
+import Clarifai from 'clarifai';
+import axios from 'axios';
+import { connect } from 'react-redux';
+
+import * as actions from '../actions';
 
 const app = new Clarifai.App(
    'f9Yuf8R8ya_1uG45M8mseffbd2rajohrdBOw9Dgc',
@@ -10,20 +14,29 @@ const app = new Clarifai.App(
  );
 
 class OptionScreen extends Component {
+
   state = {
     image: null
   }
 
-  captureImageRecipe = async () => {
+  captureImageRecipe = () => {
+
     let url = 'https://www.organicfacts.net/wp-content/uploads/2013/05/Banana3.jpg';
+    let tag = '';
 
     app.models.predict(Clarifai.GENERAL_MODEL, url).then(
     function (res) {
       console.log('response:', JSON.stringify(res.data.outputs[0].data.concepts[0].name));
       console.log('response:', JSON.stringify(res.data.outputs[0].data.concepts[0].value));
-      // let tag = res.data.outputs[0].data.concepts[0].name;
+      let tag = JSON.stringify(res.data.outputs[0].data.concepts[0].name);
+      console.log(tag);
       // console.log('mydata:', JSON.stringify(myData));
     });
+
+    this.props.fetchRecipes(tag, () => {
+      this.props.navigation.navigate('recipes');
+    });
+
   }
 
   captureImageNutrients= async () => {
@@ -114,4 +127,4 @@ const styles = {
   }
 };
 
-export default OptionScreen;
+export default connect(null, actions)(OptionScreen);

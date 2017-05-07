@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, Platform } from 'react-native';
-import { Button, Icon } from 'react-native-elements';
+import { View, Text, Platform, FlatList } from 'react-native';
+import { Button, Icon, List, ListItem } from 'react-native-elements';
+import { connect } from 'react-redux';
+
+import * as actions from '../actions';
 
 class RecipesScreen extends Component {
 
@@ -17,24 +20,6 @@ class RecipesScreen extends Component {
         <Button
           onPress={() => this.props.navigation.navigate('recipeInfo')}
         />
-        <Text>RecipesScreen</Text>
-        <Text>RecipesScreen</Text>
-        <Text>RecipesScreen</Text>
-        <Text>RecipesScreen</Text>
-        <Text>RecipesScreen</Text>
-        <Text>RecipesScreen</Text>
-        <Text>RecipesScreen</Text>
-        <Text>RecipesScreen</Text>
-        <Text>RecipesScreen</Text>
-        <Text>RecipesScreen</Text>
-        <Text>RecipesScreen</Text>
-        <Text>RecipesScreen</Text>
-        <Text>RecipesScreen</Text>
-        <Text>RecipesScreen</Text>
-        <Text>RecipesScreen</Text>
-        <Text>RecipesScreen</Text>
-        <Text>RecipesScreen</Text>
-        <Text>RecipesScreen</Text>
       </View>
     );
   }
@@ -46,4 +31,8 @@ const styles = {
   }
 }
 
-export default RecipesScreen;
+function mapStateToProps({ recipes }) {
+  return { recipes: recipes.results };
+}
+
+export default connect(mapStateToProps, actions)(RecipesScreen);
