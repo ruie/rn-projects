@@ -17,7 +17,7 @@ class App extends Component {
 const styles = {
   container: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 50

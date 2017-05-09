@@ -1,7 +1,7 @@
 {
-  "name": "Recipefy",
+  "name": "Recipefy App",
   "description": "An empty new project",
-  "slug": "Recipefy",
+  "slug": "RecipefyApp",
   "privacy": "public",
   "sdkVersion": "16.0.0",
   "version": "1.0.0",
