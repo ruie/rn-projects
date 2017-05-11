@@ -48,7 +48,8 @@ class SplashScreen extends Component {
       <View style={styles.container}>
         <Image
           style={styles.bg}
-          source={{ uri: 'https://image.ibb.co/iur7Fk/bg.png' }} >
+          source={{ uri: 'https://image.ibb.co/iur7Fk/bg.png' }}
+        >
           <Button
             large
             borderRadius={5}
