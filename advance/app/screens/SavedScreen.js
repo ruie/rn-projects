@@ -16,9 +16,6 @@ class SavedScreen extends Component {
   render() {
     return (
       <View>
-        {/* <Button
-          onPress={() => this.props.navigation.navigate('recipeInfo')}
-        /> */}
         <List>
           <FlatList
             data={this.props.recipes}
@@ -31,20 +28,13 @@ class SavedScreen extends Component {
             keyExtractor={item => item.title}
           />
         </List>
-
       </View>
     );
   }
 }
 
-const styles = {
-  container: {
-    flex: 1
-  }
-};
-
 function mapStateToProps({ recipes }) {
   return { recipes };
 }
 
-export default SavedScreen;
+export default connect(mapStateToProps, actions)(SavedScreen);
