@@ -79,7 +79,7 @@ const styles = {
     paddingBottom: 150
   },
   buttonStyle: {
-    backgroundColor: '#355089'
+    backgroundColor: '#fff'
   }
 };
 
