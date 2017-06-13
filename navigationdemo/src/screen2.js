@@ -9,7 +9,7 @@ import NavBar from 'react-native-navbar';
 class Screen2 extends Component {
 
    static navigationOptions = {
-      headerTitlegit: <Text>Screen 2</Text>,
+      headerTitle: <Text>Screen 2</Text>,
    }
 
    rightButtonConfig = {
