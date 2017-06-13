@@ -20,15 +20,7 @@ class Screen1 extends Component {
 	render() {
 		return (
 			<View style={{flex: 1}}>
-				<NavBar
-					containerStyle={{ 
-						borderBottomWidth: 1, 
-						borderColor: '#000',
-						marginTop: (Platform.OS === 'android') ? 24 : 0,
-					}}
-					title={titleConfig}
-					rightButton={rightButtonConfig}
-				/>
+
 				<View style={styles.top} >
 					<Text style={styles.text} >Screen 1</Text>
 				</View>

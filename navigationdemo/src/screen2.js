@@ -1,15 +1,34 @@
 import React, { Component } from 'react';
 import {
    Text,
-   View
+   View,
+   Platform
 } from 'react-native';
+import NavBar from 'react-native-navbar';
 
 class Screen2 extends Component {
+
+   static navigationOptions = {
+      headerTitlegit: <Text>Screen 2</Text>,
+   }
+
+   rightButtonConfig = {
+		title: 'Next',
+		handler: () => this.props.navigation.navigate('Screen2'),
+	};
+
+	titleConfig = {
+		title: 'Hello world',
+	};
+
 	render() {
 		return (
-         <View style={styles.top} >
-            <Text style={styles.text} >Screen 2</Text>
-         </View>
+         <View style={{flex: 1}}>
+
+				<View style={styles.top} >
+					<Text style={styles.text} >Screen 2</Text>
+				</View>
+			</View>	
 		);
 	}
 };
@@ -18,7 +37,6 @@ const styles = {
 	top: {
 		backgroundColor: '#000',
 		padding: 0,
-		marginTop: 24,
 	},
 	text: {
 		color: '#fff'
