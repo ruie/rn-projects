@@ -6,7 +6,7 @@ import {
 
 import Navigator from './router';
 
-class App extends Component {
+export default class App extends Component {
    render() {
       return (
          <Navigator />
@@ -14,4 +14,3 @@ class App extends Component {
    }
 };
 
-export default App;

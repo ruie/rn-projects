@@ -5,7 +5,8 @@ import Screen2 from './screen2';
 import Screen3 from './screen3';
 
 const MainStack = StackNavigator({
-   Screen2: { screen: Screen2 }
+   Screen2: { screen: Screen2 },
+   
 });
 
 const Navigator = TabNavigator({

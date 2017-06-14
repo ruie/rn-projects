@@ -6,16 +6,11 @@ import {
 } from 'react-native';
 import NavBar from 'react-native-navbar';
 
-class Screen1 extends Component {
+export default class Screen1 extends Component {
 
-	rightButtonConfig = {
-		title: 'Next',
-		handler: () => this.props.navigation.navigate('Screen2'),
-	};
-
-	titleConfig = {
-		title: 'Hello world',
-	};
+	static navigationOptions = {
+      headerTitle: <Text>Screen 1</Text>,
+   }
 
 	render() {
 		return (
@@ -39,4 +34,3 @@ const styles = {
 	}
 }
 
-export default Screen1;

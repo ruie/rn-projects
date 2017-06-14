@@ -2,32 +2,57 @@ import React, { Component } from 'react';
 import {
    Text,
    View,
-   Platform
+   Image,
+   Platform,
+   FlatList,
+   StatusBar
 } from 'react-native';
+import { Constants } from 'expo';
 import NavBar from 'react-native-navbar';
 
 class Screen2 extends Component {
 
    static navigationOptions = {
       headerTitle: <Text>Screen 2</Text>,
+      headerStyle: {
+         paddingTop: (Platform.OS === 'android') ? Constants.statusBarHeight : 0
+      }
    }
 
-   rightButtonConfig = {
-		title: 'Next',
-		handler: () => this.props.navigation.navigate('Screen2'),
-	};
+   state = {
+      isLoading: false,
+      error: false,
+      posts: [],
+   }
 
-	titleConfig = {
-		title: 'Hello world',
-	};
+   componentWillMount = async () => {
+      try {
+         const response = await fetch('https://jsonplaceholder.typicode.com/photos/')
+         const posts = await response.json();
+         this.setState({ posts });
+         console.log(this.state.posts);
+      } catch(e) {}
+   }
+
+   renderItem = ({ item }) => {
+      return (
+         <View>
+            <Text>{item.title}</Text>
+            <Image source={{ uri: item.thumbnailUrl}} style={{ width: 100, height: 100 }}/>
+         </View>
+      );
+   }
+
+   extractKey = ({id}) => id;
 
 	render() {
 		return (
          <View style={{flex: 1}}>
-
-				<View style={styles.top} >
-					<Text style={styles.text} >Screen 2</Text>
-				</View>
+            <FlatList
+               data={this.state.posts}
+               renderItem={this.renderItem}
+               keyExtractor={this.extractKey}
+            />
 			</View>	
 		);
 	}
