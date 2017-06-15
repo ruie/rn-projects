@@ -10,6 +10,9 @@ export default class App extends Component {
    render() {
       return (
          <Navigator />
+         <View>
+            <Text>Testing</Text>
+         </View>
       );
    }
 };
