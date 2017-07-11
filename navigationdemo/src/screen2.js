@@ -15,7 +15,8 @@ class Screen2 extends Component {
    static navigationOptions = {
       headerTitle: <Text>Screen 2</Text>,
       headerStyle: {
-         paddingTop: (Platform.OS === 'android') ? Constants.statusBarHeight : 0
+         paddingTop: (Platform.OS === 'android') ? Constants.statusBarHeight : 0,
+         backgroundColor: 'white',
       }
    }
 
@@ -45,17 +46,17 @@ class Screen2 extends Component {
 
    extractKey = ({id}) => id;
 
-	render() {
-		return (
-         <View style={{flex: 1}}>
+    render() {
+        return (
+            <View style={{flex: 1}}>
             <FlatList
-               data={this.state.posts}
-               renderItem={this.renderItem}
-               keyExtractor={this.extractKey}
+                data={this.state.posts}
+                renderItem={this.renderItem}
+                keyExtractor={this.extractKey}
             />
-			</View>	
-		);
-	}
+        </View>	
+        );
+    }
 };
 
 const styles = {
