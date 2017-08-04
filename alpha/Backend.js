@@ -11,8 +11,6 @@ var config = {
 
 firebase.initializeApp(config);
 
-export const rootRef = firebase.database().ref();
-
 export default firebase;
 
 // {
