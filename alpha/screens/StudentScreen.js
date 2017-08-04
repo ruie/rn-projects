@@ -1,15 +1,23 @@
 import React, { Component} from 'react';
 import { Text, View } from 'react-native';
 import { Icon, List, ListItem, } from 'react-native-elements';
+import { connect } from 'react-redux';
 import Modal from 'react-native-modalbox';
+import { NavigationActions } from 'react-navigation'; 
 
+import * as actions from '../actions';
 import Backend from '../Backend';
 
-export default class StudentScreen extends Component {
+class StudentScreen extends Component {
 
-	static navigationOptions = ({ navigation }) => ({
+	static navigationOptions = ({ navigation }) => {
+		const { params = {}} = navigation.state;
+		return {
 		headerTitle: 'Stubu',
-		headerLeft: <Icon name='book' type='font-awesome' color='#ffffff' onPress={() => refs.modal1.open()} />,
+		headerLeft: <Icon name='book' type='font-awesome' color='#ffffff' onPress={() => {
+			params.switchStatus('tutor')
+			params.redirectScreen('TutorScreen')
+			}} />,
 		headerRight: (
 		<View style={{ flexDirection: 'row' }}>
 			<Icon name='align-left' type='font-awesome' color='#ffffff' style={{ marginRight: 10 }} onPress={() => navigation.navigate('Filter')} />
@@ -19,7 +27,7 @@ export default class StudentScreen extends Component {
 		tabBarIcon: ({ tintColor }) => (
 		<Icon name='list-ul' type='font-awesome' color={tintColor} />
 		),
-	});
+	}};
 
 	state = {
 		isOpen: false,
@@ -29,14 +37,19 @@ export default class StudentScreen extends Component {
 	};
 
 	componentWillMount() {
+		console.log('Initial',this.props);
 	}
 
-	resetAction = (routeName) => NavigationActions.reset({
-		index: 0,
-		actions: [
-			NavigationActions.navigate({ routeName })
-		]
-	})
+	componentDidMount() {
+		this.props.navigation.setParams({ 
+			redirectScreen: this.redirectScreen,
+			switchStatus: this.props.switchStatus
+		});
+	}
+
+	redirectScreen = route => this.props.navigation.dispatch(
+		NavigationActions.reset({ index: 0, actions: [NavigationActions.navigate({ routeName: route })] })
+	);
 
 	render() {
 		return <View>
@@ -70,3 +83,11 @@ const styles = {
 		padding: 10
 	},
 };
+
+const mapStateToProps = ({ status }) => {
+	return {
+		status: status.status
+	}
+}
+
+export default connect(mapStateToProps, actions)(StudentScreen);
