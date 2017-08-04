@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import { Icon, List, ListItem, } from 'react-native-elements';
 import { connect } from 'react-redux';
-import Modal from 'react-native-modalbox';
 import { NavigationActions } from 'react-navigation';
 
 import * as actions from '../actions';
@@ -20,8 +19,7 @@ class TutorScreen extends Component {
       }} />,
       headerRight: (
          <View style={{ flexDirection: 'row' }}>
-            <Icon name='align-left' type='font-awesome' color='#ffffff' style={{ marginRight: 10 }} onPress={() => navigation.navigate('Filter')} />
-            <Icon name='pencil-square-o' type='font-awesome' color='#ffffff' onPress={() => navigation.navigate('Post')} />
+            <Icon name='align-left' type='font-awesome' color='#ffffff' style={{ marginRight: 10 }} onPress={() => navigation.navigate('FilterScreen')} />
          </View>
       ),
       tabBarIcon: ({ tintColor }) => (
@@ -30,10 +28,6 @@ class TutorScreen extends Component {
    }};
 
    state = {
-      isOpen: false,
-      isDisabled: false,
-      swipeToClose: true,
-      sliderValue: 0.3
    };
 
    componentWillMount() {
@@ -47,7 +41,6 @@ class TutorScreen extends Component {
       });
    }
 
-
    redirectScreen = route => this.props.navigation.dispatch(
       NavigationActions.reset({ index: 0, actions: [NavigationActions.navigate({ routeName: route })] })
    );
@@ -55,15 +48,6 @@ class TutorScreen extends Component {
    render() {
       return <View>
          <Text>TutorScreen</Text>
-         <Modal
-            style={[styles.modal]}
-            ref={"modal1"}
-            swipeToClose={this.state.swipeToClose}
-            onClosed={this.onClose}
-            onOpened={this.onOpen}
-            onClosingState={this.onClosingState}>
-            <Text style={styles.text}>Basic modal</Text>
-         </Modal>
       </View>;
    }
 }
