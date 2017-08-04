@@ -3,14 +3,15 @@ import { Text, View, AsyncStorage } from "react-native";
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import { DoubleBounce } from 'react-native-loader';
+import { Button } from 'react-native-elements'
 
 import * as actions from '../actions';
 
 class LoginScreen extends Component {
 
   componentDidMount() {
-    // AsyncStorage.removeItem('fb_token');
-    this.props.facebookLogin();
+    AsyncStorage.removeItem('fb_token');
+    // this.props.facebookLogin();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -33,7 +34,10 @@ class LoginScreen extends Component {
     } else {
       return (
         <View>
-          <Text>LoginScreen</Text>
+          <Button
+            onPress={() => this.props.facebookLogin()}         
+            title='BUTTON'
+          />
         </View>
       );
     }  

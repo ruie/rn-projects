@@ -10,12 +10,21 @@ import ProfileScreen from './screens/ProfileScreen';
 import CategoryScreen from './screens/CategoryScreen';
 
 const Main = StackNavigator({
+   LoginScreen: {
+      screen: LoginScreen,
+      navigationOptions: {
+         header: null,
+         tabBarVisible: false,
+      },   
+   },
    StudentScreen: { screen: StudentScreen },
    TutorScreen: { screen: TutorScreen },
    FilterScreen: { screen: FilterScreen },
    PostScreen: { screen: PostScreen },
    CategoryScreen: { screen: CategoryScreen }
 }, {
+   lazy: true,
+
    navigationOptions: {
       headerTitleStyle: {
          color: '#ffffff',
@@ -29,16 +38,12 @@ const Main = StackNavigator({
          paddingLeft: 10,
       },
    },
-   lazyLoad: true
+   
 });
 
 export default Navigator = TabNavigator({
-   LoginScreen: { 
-      screen: LoginScreen,
-  
-   },
    Main: { screen: Main }
 }, {
-   lazyLoad: true
+   lazy: true
 });
 
