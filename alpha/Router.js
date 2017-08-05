@@ -9,12 +9,6 @@ import FilterScreen from './screens/FilterScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import CategoryScreen from './screens/CategoryScreen';
 
-export const AuthStack = StackNavigator({
-   LoginScreen: {
-      screen: LoginScreen,
-   }, 
-});
-
 const FeedStack = StackNavigator({
    StudentScreen: { screen: StudentScreen },
    TutorScreen: { screen: TutorScreen },
@@ -25,17 +19,32 @@ const FeedStack = StackNavigator({
 
 const ProfileStack = StackNavigator({
    ProfileScreen: { screen: ProfileScreen },
-   AuthStack: { screen: AuthStack }
 });
 
 const MainStack = TabNavigator({
    FeedStack: { screen: FeedStack },
    ProfileStack: { screen: ProfileStack }
+}, {
+   tabBarComponent: TabBarBottom,
+   tabBarPosition: 'bottom',
+   swipeEnabled: false,
+   animationEnabled: false,
+   lazy: true,
+   tabBarOptions: {
+      showIcon: true,
+      showLabel: false,
+      style: {
+         backgroundColor: '#48B25D',
+      },
+      activeTintColor: '#000000',
+      inactiveTintColor: '#ffffff',
+   },
 });
 
 export const Navigator = StackNavigator({
    LoginScreen: { screen: LoginScreen},
    MainStack: { screen: MainStack }
 }, {
-   headerMode: 'none'
+   headerMode: 'none',
+   lazy: true,
 })
