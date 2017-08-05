@@ -9,9 +9,11 @@ import * as actions from '../actions';
 
 class LoginScreen extends Component {
 
-  componentDidMount() {
-    AsyncStorage.removeItem('fb_token');
+  componentWillMount() {
+    // AsyncStorage.removeItem('fb_token');
     // this.props.facebookLogin();
+    console.log(this.props.token);
+
   }
 
   componentWillReceiveProps(nextProps) {
@@ -31,7 +33,15 @@ class LoginScreen extends Component {
           <DoubleBounce size={10} color="#52AB42" />
         </View>
       );     
-    } else {
+    } 
+    
+    if (this.props.token === null) {
+      return (
+        <View>
+          {this.redirectScreen('StudentScreen')}
+        </View>
+      )
+      } else {
       return (
         <View>
           <Button

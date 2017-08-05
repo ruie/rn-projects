@@ -1,5 +1,5 @@
-import { Platform } from 'react-native';
-import { StackNavigator, TabNavigator } from 'react-navigation';
+import { Platform, StatusBar, Image } from 'react-native';
+import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
 
 import LoginScreen from './screens/LoginScreen';
 import StudentScreen from './screens/StudentScreen';
@@ -24,7 +24,6 @@ const Main = StackNavigator({
    CategoryScreen: { screen: CategoryScreen }
 }, {
    lazy: true,
-
    navigationOptions: {
       headerTitleStyle: {
          color: '#ffffff',
@@ -44,6 +43,19 @@ const Main = StackNavigator({
 export default Navigator = TabNavigator({
    Main: { screen: Main }
 }, {
-   lazy: true
+   tabBarComponent: TabBarBottom,
+   tabBarPosition: 'bottom',
+   swipeEnabled: false,
+   animationEnabled: false,
+   lazy: true,
+   tabBarOptions: {
+      showIcon: true,
+      showLabel: false,
+      style: {
+         backgroundColor: '#48B25D',
+      },
+      activeTintColor: '#000000',
+      inactiveTintColor: '#ffffff',
+   },
 });
 
