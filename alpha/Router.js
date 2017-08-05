@@ -1,4 +1,4 @@
-import { Platform, StatusBar, Image } from 'react-native';
+import { Platform, StatusBar } from 'react-native';
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
 
 import LoginScreen from './screens/LoginScreen';
@@ -15,10 +15,39 @@ const FeedStack = StackNavigator({
    PostScreen: { screen: PostScreen },
    FilterScreen: { screen: FilterScreen },
    CategoryScreen: { screen: CategoryScreen }
-}, { mode: 'modal' })
+}, {
+   mode: 'modal',
+   navigationOptions: {
+      headerTitleStyle: {
+         color: '#ffffff',
+         fontWeight: 'bold',
+         alignSelf: 'center'
+      },
+      headerStyle: {
+         backgroundColor: '#48B25D',
+         marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+         paddingRight: 10,
+         paddingLeft: 10,
+      },
+   },
+})
 
 const ProfileStack = StackNavigator({
    ProfileScreen: { screen: ProfileScreen },
+}, {
+   navigationOptions: {
+      headerTitleStyle: {
+         color: '#ffffff',
+         fontWeight: 'bold',
+         alignSelf: 'center'
+      },
+      headerStyle: {
+         backgroundColor: '#48B25D',
+         marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+         paddingRight: 10,
+         paddingLeft: 10,
+      },
+   },
 });
 
 const MainStack = TabNavigator({
@@ -34,7 +63,7 @@ const MainStack = TabNavigator({
       showIcon: true,
       showLabel: false,
       style: {
-         backgroundColor: '#48B25D',
+         backgroundColor: '#48B25D', 
       },
       activeTintColor: '#000000',
       inactiveTintColor: '#ffffff',
@@ -45,6 +74,7 @@ export const Navigator = StackNavigator({
    LoginScreen: { screen: LoginScreen},
    MainStack: { screen: MainStack }
 }, {
+   initialRouteName: 'LoginScreen',
    headerMode: 'none',
    lazy: true,
 })

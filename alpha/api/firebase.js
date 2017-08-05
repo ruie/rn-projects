@@ -11,9 +11,34 @@ var config = {
 
 firebase.initializeApp(config);
 
+function getUserData() {
+  let { uid, displayName } = firebaseAuth.currentUser
+  const data = {
+    uid,
+    displayName
+  };
+  return data;
+}
+
+function getPostRef() {
+  let { uid } = getUserData();
+  return firebaseDatabase.ref('user_posts/' + uid)
+}
+
+function getStudentPostsRef() {
+  return firebaseDatabase.ref('student_posts/')
+}
+
+function getUsersRef() {
+  let { uid } = getUserData();
+  return firebaseDatabase.ref('users/');
+}
+
 export default firebase;
-export const firebaseDatabase = firebase.database();
-export const firebaseAuth = firebase.auth();
+const firebaseDatabase = firebase.database();
+const firebaseAuth = firebase.auth();
+
+export { firebaseAuth, firebaseDatabase, getUserData, getPostRef, getStudentPostsRef, getUsersRef };
 
 // {
 // 	users: {

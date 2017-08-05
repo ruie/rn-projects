@@ -20,6 +20,7 @@ class LoginScreen extends Component {
 			if (user || hasToken) {
 				this.props.authState(true);
 				this.redirectScreen('MainStack');
+				// this.props.navigation.navigate('StudentScreen')
 			} else {
 				this.props.authState(false);
 			}

@@ -1,7 +1,7 @@
 import * as Constants from '../Constants';
 
-import firebase from '../api/firebase';
-import { getToken } from '../api/Auth';
+import { firebase } from '../api/firebase';
+import { getToken } from '../api/auth';
 
 export const LoginWithFacebook = () => async dispatch => {
    try {
