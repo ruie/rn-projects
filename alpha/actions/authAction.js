@@ -1,7 +1,7 @@
 import { AsyncStorage } from 'react-native';
 import { Facebook } from 'expo';
 
-import Backend from '../Backend';
+import firebase from '../firebase';
 import * as types from './types';
 
 

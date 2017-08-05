@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 
 import * as actions from '../actions';
-import Backend from '../Backend';
+import firebase from '../firebase';
 
 class TutorScreen extends Component {
 
