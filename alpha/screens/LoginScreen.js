@@ -1,65 +1,14 @@
-import React, { Component } from "react";
-import { Text, View, AsyncStorage } from "react-native";
-import { connect } from 'react-redux';
-import { NavigationActions } from 'react-navigation';
-import { DoubleBounce } from 'react-native-loader';
-import { Button } from 'react-native-elements'
+import React, { Component } from 'react';
+import { Text, View } from 'react-native';
 
-import * as actions from '../actions';
-
-class LoginScreen extends Component {
-
-  componentWillMount() {
-    // AsyncStorage.removeItem('fb_token');
-    // this.props.facebookLogin();
-    console.log(this.props.token);
-
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.token) {
-      this.redirectScreen('StudentScreen');
-    }
-  }
-
-  redirectScreen = route => this.props.navigation.dispatch(
-    NavigationActions.reset({ index: 0, actions: [NavigationActions.navigate({ routeName: route })] })
-  );
-
+export default class LoginScreen extends Component {
   render() {
-    if(this.props.isAuth) {
-      return (
-        <View>
-          <DoubleBounce size={10} color="#52AB42" />
-        </View>
-      );     
-    } 
-    
-    if (this.props.token === null) {
-      return (
-        <View>
-          {this.redirectScreen('StudentScreen')}
-        </View>
-      )
-      } else {
-      return (
-        <View>
-          <Button
-            onPress={() => this.props.facebookLogin()}         
-            title='BUTTON'
-          />
-        </View>
-      );
-    }  
+    return (
+      <View>
+        <Text>
+          LoginScreen
+            </Text>
+      </View>
+    );
   }
-
 }
-
-function mapStateToProps({ auth }) {
-   return { 
-     token: auth.token,
-     isAuth: auth.isAuth
-    }
-}
-
-export default connect(mapStateToProps, actions)(LoginScreen);
