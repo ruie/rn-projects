@@ -12,7 +12,7 @@ import CategoryScreen from './screens/CategoryScreen';
 export const AuthStack = StackNavigator({
    LoginScreen: {
       screen: LoginScreen,
-   }
+   }, 
 });
 
 const FeedStack = StackNavigator({
@@ -23,6 +23,19 @@ const FeedStack = StackNavigator({
    CategoryScreen: { screen: CategoryScreen }
 }, { mode: 'modal' })
 
-export const MainStack = TabNavigator({
-   FeedStack: { screen: FeedStack }
+const ProfileStack = StackNavigator({
+   ProfileScreen: { screen: ProfileScreen },
+   AuthStack: { screen: AuthStack }
+});
+
+const MainStack = TabNavigator({
+   FeedStack: { screen: FeedStack },
+   ProfileStack: { screen: ProfileStack }
+});
+
+export const Navigator = StackNavigator({
+   LoginScreen: { screen: LoginScreen},
+   MainStack: { screen: MainStack }
+}, {
+   headerMode: 'none'
 })
