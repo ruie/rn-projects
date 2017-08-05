@@ -1,17 +1,25 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { Provider } from 'redux';
+import { connect } from 'react-redux';
 
-export default class App extends React.Component {
+import store from './store';
+import * as Router from './Router';
+
+
+class App extends React.Component {
 
 	render() {
+		console.log(this.props);
 		return (
-			<View>
-				<Text>
-					App
-            </Text>
-			</View>
+			<Provider store={store}>
+				<Router.AuthStack />
+			</Provider>
 		);
+
 	}
 
 }
+
+export default App;
