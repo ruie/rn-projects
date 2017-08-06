@@ -67,6 +67,7 @@ const MainStack = TabNavigator({
       },
       activeTintColor: '#000000',
       inactiveTintColor: '#ffffff',
+      
    },
 });
 

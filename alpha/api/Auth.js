@@ -26,7 +26,8 @@ export const getToken = async () => {
 			return 'cancel';
 		} else {
 			let { uid } = await authenticate(token);
-			await AsyncStorage.setItem('fb_token', token);
+			await AsyncStorage.setItem('fb_token', token);	
+			// await AsyncStorage.setItem('uid', uid);
 			return { token, uid, type };
 		}
 	} catch(e) {

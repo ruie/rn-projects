@@ -49,8 +49,9 @@ export default class PostScreen extends Component {
           flex: 1,
           alignItems: 'stretch',
           paddingLeft: 10,
-          paddingRight: 10
-        }} 
+          paddingRight: 10,
+        }}
+        numberOfLines={10}
         placeholder={'Input your questions here'}
         onChangeText={(text) => this.setState({ postText: text })}
         value={this.state.postText}

@@ -15,7 +15,7 @@ function getUserData() {
   let { uid, displayName } = firebaseAuth.currentUser
   const data = {
     uid,
-    displayName
+    displayName,
   };
   return data;
 }
@@ -30,9 +30,9 @@ function getStudentPostsRef() {
 }
 
 function getUsersRef() {
-  let { uid } = getUserData();
   return firebaseDatabase.ref('users/');
 }
+
 
 export default firebase;
 const firebaseDatabase = firebase.database();

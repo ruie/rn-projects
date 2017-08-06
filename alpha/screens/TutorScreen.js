@@ -10,7 +10,7 @@ export default class TutorScreen extends Component {
       const { params = {} } = navigation.state;
       return {
          headerTitle: 'Stubu',
-         headerLeft: <Icon name='book' type='font-awesome' color='#ffffff' onPress={() => navigation.navigate('StudentScreen')} />,
+         headerLeft: <Icon name='user-circle' type='font-awesome' color='#ffffff' onPress={() => navigation.navigate('StudentScreen')} />,
          headerRight: (
             <View style={{ flexDirection: 'row' }}>
                <Icon name='align-left' type='font-awesome' color='#ffffff' style={{ marginRight: 10 }} onPress={() => navigation.navigate('Filter')} />

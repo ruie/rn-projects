@@ -11,16 +11,16 @@ import firebase, { firebaseAuth } from '../api/firebase';
 class LoginScreen extends Component {
 
 	componentWillMount() {
-		// firebaseAuth.signOut();
-		// AsyncStorage.removeItem('fb_token');
+		firebaseAuth.signOut();
+		AsyncStorage.removeItem('fb_token');
 		this.props.willAuth(true);
 		firebaseAuth.onAuthStateChanged(async (user) => {
 			let hasToken = await AsyncStorage.getItem('fb_token');
-			console.log("hastoken",hasToken);
+			console.log('login', hasToken)
 			if (user || hasToken) {
+				console.log('login', user)
 				this.props.authState(true);
 				this.redirectScreen('MainStack');
-				// this.props.navigation.navigate('StudentScreen')
 			} else {
 				this.props.authState(false);
 			}
@@ -32,7 +32,6 @@ class LoginScreen extends Component {
 	);
 
 	render() {
-		console.log(this.props);
 		if (this.props.loading) {
 			return (
 				<View>

@@ -8,7 +8,7 @@ const store = createStore(
    reducers,
    {},
    compose(
-      applyMiddleware(thunk, logger)
+      applyMiddleware(thunk)
    )
 );
 
