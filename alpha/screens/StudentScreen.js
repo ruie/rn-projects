@@ -66,7 +66,7 @@ export default class StudentScreen extends Component {
 							
 						/>
 					)}
-					keyExtractor={item => item.content}
+					keyExtractor={item => item.date}
 				/>
 			</List>
 		);

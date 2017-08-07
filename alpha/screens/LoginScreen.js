@@ -11,8 +11,8 @@ import firebase, { firebaseAuth } from '../api/firebase';
 class LoginScreen extends Component {
 
 	componentWillMount() {
-		firebaseAuth.signOut();
-		AsyncStorage.removeItem('fb_token');
+		// firebaseAuth.signOut();
+		// AsyncStorage.removeItem('fb_token');
 		this.props.willAuth(true);
 		firebaseAuth.onAuthStateChanged(async (user) => {
 			let hasToken = await AsyncStorage.getItem('fb_token');
