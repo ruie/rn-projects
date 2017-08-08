@@ -1,21 +1,40 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
+import { Button } from 'react-native-elements';
+import { Provider } from 'react-redux';
+
+import { fireabaseAuth } from './api/firebase';
+import { test } from './api/auth';
+import { Login, Feed } from './Navigator';
+
+console.ignoredYellowBox = [
+  'Setting a timer'
+];
 
 export default class App extends React.Component {
+
+  _build = () => {
+    let user = test();
+    console.log('====================================');
+    console.log('build', user);
+    console.log('====================================');
+    if(user ==! null) {
+      return <Feed />;
+    } else {
+      return <Login />;
+    }
+  }
+
   render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
-    );
+    return <Login />;
   }
 }
 
-const styles = StyleSheet.create({
+const styles = {
   container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
+};
