@@ -7,12 +7,6 @@ const authenticate = token => {
    return firebase.auth().signInWithCredential(credential)
 }
 
-export const getCurrentUser = () => {
-  const status = fireabaseAuth.currentUser;
-  return status;
-}
-
-
 export const test = () => {
    const status = fireabaseAuth.currentUser;
    if (status === null ) {
@@ -32,18 +26,6 @@ export const test = () => {
 
 export const logout = () => {
   fireabaseAuth.signOut();
-}
-
-export const onAuthState = async () => {
-  fireabaseAuth.onAuthStateChanged(user => {
-    if (user !== null) {
-      return user;
-      // unsubscribe();
-    } else {
-     return user;
-      // unsubscribe();
-    }
-  });
 }
 
 export const LoginWithFacebook = async () => {

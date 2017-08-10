@@ -7,34 +7,36 @@ import { fireabaseAuth } from './api/firebase';
 import { test } from './api/auth';
 import { Login, Feed } from './Navigator';
 
-console.ignoredYellowBox = [
-  'Setting a timer'
-];
-
 export default class App extends React.Component {
 
-  _build = () => {
-    let user = test();
-    console.log('====================================');
-    console.log('build', user);
-    console.log('====================================');
-    if(user ==! null) {
-      return <Feed />;
-    } else {
-      return <Login />;
-    }
+  state = {
+    status: null
+  }
+
+  componentWillMount() {
+    fireabaseAuth.onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ status: true });
+      } else {
+        this.setState({ status: false });
+      }
+    });
   }
 
   render() {
-    return <Login />;
+	  if (this.state.status) {
+		  return (
+        <View style={{ flex: 1 }}>
+			    <Feed />
+        </View>
+		  )
+	  }
+	  else {
+		  return (
+        <View style={{ flex: 1 }}>
+          <Login />
+        </View>
+      )
+	  }
   }
 }
-
-const styles = {
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-};
