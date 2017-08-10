@@ -16,7 +16,7 @@ export const test = () => {
       return status;
    } else {
       let data = status.providerData;
-      firebaseDatabase.ref('test').child(data[0].uid).push(data);
+      firebaseDatabase.ref('test').child(status.uid).push(data[0]);
       console.log('====================================');
       console.log('test:', data);
       console.log('====================================');
@@ -47,7 +47,10 @@ export const LoginWithFacebook = async () => {
          fbId: data.id,
          name: data.name,
          cover: data.cover.source,
-         picture
+         picture,
+         school: "",
+         location: [100,100],
+        	description: ""
       });
 
       return true;

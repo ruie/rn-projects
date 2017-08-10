@@ -2,10 +2,12 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Provider } from 'react-redux';
+import { AppLoading } from 'expo';
+import { Bubbles, DoubleBounce, Bars, Pulse } from 'react-native-loader';
 
 import { fireabaseAuth } from './api/firebase';
 import { test } from './api/auth';
-import { Login, Feed } from './Navigator';
+import { Login, Main } from './Navigator';
 
 export default class App extends React.Component {
 
@@ -25,7 +27,7 @@ export default class App extends React.Component {
 
   renderRouter = () => {
     if (this.state.isAuth) {
-      return <Feed />
+      return <Main />
     }
     else {
       return <Login />

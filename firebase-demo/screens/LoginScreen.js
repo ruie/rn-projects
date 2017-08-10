@@ -13,7 +13,7 @@ class LoginScreen extends Component {
 
    renderStatus = () => {
       if(this.state.isLoading) {
-         return <Pulse size={10} color="#52AB42" />
+         return <Pulse size={30} color="#52AB42" />
       } else {
          return <Button
             title={'Login with Facebook'}
@@ -47,5 +47,4 @@ const styles = {
    },
 };
 
-export default LoginScreen;
-    
+export { LoginScreen };
