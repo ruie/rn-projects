@@ -10,33 +10,33 @@ import { Login, Feed } from './Navigator';
 export default class App extends React.Component {
 
   state = {
-    status: null
+    isAuth: null
   }
 
   componentWillMount() {
     fireabaseAuth.onAuthStateChanged((user) => {
       if (user) {
-        this.setState({ status: true });
+        this.setState({ isAuth: true });
       } else {
-        this.setState({ status: false });
+        this.setState({ isAuth: false });
       }
     });
   }
 
+  renderRouter = () => {
+    if (this.state.isAuth) {
+      return <Feed />
+    }
+    else {
+      return <Login />
+    }
+  }
+
   render() {
-	  if (this.state.status) {
-		  return (
-        <View style={{ flex: 1 }}>
-			    <Feed />
-        </View>
-		  )
-	  }
-	  else {
-		  return (
-        <View style={{ flex: 1 }}>
-          <Login />
-        </View>
-      )
-	  }
+	  return (
+      <View style={{ flex: 1 }}>
+        {this.renderRouter()}
+      </View>
+    )
   }
 }

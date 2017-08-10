@@ -40,8 +40,8 @@ export const LoginWithFacebook = async () => {
       const data = await response.json();
       const picture = await `https://graph.facebook.com/${data.id}/picture?height=500`;
 
-      console.log('FAcebook Auth', `${displayName} ${providerData} ${providerId} ${uid}` );
-      console.log('FAcebook Response', `${data.id} ${data.name} ${picture} ${data.cover.source}` );
+      console.log('Facebook Auth', `${displayName} ${providerData} ${providerId} ${uid}` );
+      console.log('Facebook Response', `${data.id} ${data.name} ${picture} ${data.cover.source}` );
 
       firebaseDatabase.ref('users').child(uid).set({
          fbId: data.id,
@@ -49,6 +49,8 @@ export const LoginWithFacebook = async () => {
          cover: data.cover.source,
          picture
       });
+
+      return true;
    } catch (error) {
     console.log('====================================');
     console.log('LoginWithFacebook', error);

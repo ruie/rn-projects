@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
-import { AppLoading } from 'expo';
+import { Bubbles, DoubleBounce, Bars, Pulse } from 'react-native-loader';
 
 import { LoginWithFacebook, test, logout } from '../api/auth';
 
@@ -13,13 +13,13 @@ class LoginScreen extends Component {
 
    renderStatus = () => {
       if(this.state.isLoading) {
-         return <AppLoading />
+         return <Pulse size={10} color="#52AB42" />
       } else {
          return <Button
             title={'Login with Facebook'}
             onPress={() => {
                this.setState({ isLoading: true })
-               LoginWithFacebook()
+               LoginWithFacebook();
             }}
          />
       }
