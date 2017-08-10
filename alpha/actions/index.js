@@ -1,2 +1,1 @@
-export * from './authAction';
-export * from './statusAction';
+export * from './authActions';

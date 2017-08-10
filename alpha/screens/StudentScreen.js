@@ -1,80 +1,79 @@
-import React, { Component} from 'react';
-import { Text, View } from 'react-native';
-import { Icon, List, ListItem, } from 'react-native-elements';
-import { connect } from 'react-redux';
-import { NavigationActions } from 'react-navigation'; 
+import React, { Component } from 'react';
+import { Text, View, FlatList } from 'react-native';
+import { NavigationActions } from 'react-navigation';
+import { Icon, List, ListItem, Button } from 'react-native-elements';
 
+<<<<<<< HEAD
 import * as actions from '../actions';
 import firebase from '../firebase';
+=======
+import { getStudentPostsRef } from '../api/firebase';
+import { createPost } from '../api/post';
+import { createUser } from '../api/user';
+>>>>>>> fb-demo
 
-class StudentScreen extends Component {
+export default class StudentScreen extends Component {
 
 	static navigationOptions = ({ navigation }) => {
-		const { params = {}} = navigation.state;
+		const { params = {} } = navigation.state;
 		return {
 		headerTitle: 'Stubu',
-		headerLeft: <Icon name='book' type='font-awesome' color='#ffffff' onPress={() => {
-			params.switchStatus('tutor')
-			params.redirectScreen('TutorScreen')
-			}} />,
+		headerLeft: <Icon name='book' type='font-awesome' color='#ffffff' onPress={() => navigation.navigate('TutorScreen')} />,
 		headerRight: (
-		<View style={{ flexDirection: 'row' }}>
-				<Icon name='align-left' type='font-awesome' color='#ffffff' style={{ marginRight: 10 }} onPress={() => navigation.navigate('CategoryScreen')} />
-			<Icon name='pencil-square-o' type='font-awesome' color='#ffffff' onPress={() => navigation.navigate('PostScreen')} />
-		</View>
+			<View style={{ flexDirection: 'row' }}>
+				<Icon name='align-left' type='font-awesome' color='#ffffff' style={{ marginRight: 10 }} onPress={() => navigation.navigate('FilterScreen')} />
+				<Icon name='pencil-square-o' type='font-awesome' color='#ffffff' onPress={() => navigation.navigate('PostScreen')} />
+			</View>
 		),
 		tabBarIcon: ({ tintColor }) => (
-		<Icon name='list-ul' type='font-awesome' color={tintColor} />
+			<Icon name='list-ul' type='font-awesome' color={tintColor} />
 		),
 	}};
 
 	state = {
-	};
+		userPosts: [],
+	}
 
-	componentWillMount() {
-		console.log('Initial',this.props);
+	fetchUserPosts = () => {
+		getStudentPostsRef().on('child_added', (data) => {
+			this.setState({
+				userPosts: [...this.state.userPosts, data.val()]
+			})
+		})
 	}
 
 	componentDidMount() {
-		this.props.navigation.setParams({ 
-			redirectScreen: this.redirectScreen,
-			switchStatus: this.props.switchStatus
-		});
+		this.fetchUserPosts();
 	}
-
-	redirectScreen = route => this.props.navigation.dispatch(
-		NavigationActions.reset({ index: 0, actions: [NavigationActions.navigate({ routeName: route })] })
-	);
+	
 
 	render() {
-		return <View>
-			<Text>StudentScreen</Text>
-
-		</View>;
+		return (
+			<List
+				containerStyle={{ marginTop: 0, flex: 1, borderBottomColor: '#eee', borderTopWidth: 1, borderBottomWidth: 0 }}>
+				<FlatList
+					data={this.state.userPosts}
+					renderItem={({ item }) => (
+						<ListItem
+							containerStyle={{ borderBottomColor: '#F1F1F3' }}
+							roundAvatar
+							subtitleNumberOfLines={3}
+	
+							title={
+								<View style={{ marginLeft: 10, flexDirection: "row" }} >
+									<Text style={{ fontSize: 15, fontWeight: 'bold', marginRight: 7 }} >{`${item.displayName}`}</Text>
+									
+								</View>
+							}
+							subtitle={item.content}
+							subtitleStyle={{ fontWeight: 'normal' }}
+							
+							
+						/>
+					)}
+					keyExtractor={item => item.date}
+				/>
+			</List>
+		);
 	}
 }
-
-const styles = {
-	wrapper: {
-		paddingTop: 50,
-		flex: 1
-	},
-	modal: {
-		justifyContent: 'center',
-		alignItems: 'center'
-	},
-	btn: {
-		margin: 10,
-		backgroundColor: "#3B5998",
-		color: "white",
-		padding: 10
-	},
-};
-
-const mapStateToProps = ({ status }) => {
-	return {
-		status: status.status
-	}
-}
-
-export default connect(mapStateToProps, actions)(StudentScreen);

@@ -3,29 +3,60 @@ import {
   View,
   Text
 } from 'react-native';
-import { Icon, FormLabel, FormInput, FormValidationMessage } from 'react-native-elements';
+import { Icon, FormLabel, FormInput } from 'react-native-elements';
 
-class PostScreen extends Component {
+import { createPost } from '../api/post';
 
-  static navigationOptions = ({ navigation }) => ({
+export default class PostScreen extends Component {
+
+  static navigationOptions = ({ navigation }) => {
+    const { params = {} } = navigation.state;
+    return {
     headerTitle: 'New Post',
     headerLeft: <Icon name='close' type='font-awesome' color='#ffffff' onPress={() => navigation.goBack()} />,
-    headerRight: <Icon name='check' type='font-awesome' color='#ffffff' onPress={() => navigation.goBack()} />,
+    headerRight: <Icon name='check' type='font-awesome' color='#ffffff' onPress={() => {
+      let data = params.getPostText();
+      params.createPost(data);
+      navigation.goBack();
+    }} />,
     tabBarIcon: ({ tintColor }) => (
       <Icon name='list-ul' type='font-awesome' color={tintColor} />
     ),
-  });
+  }};
+
+  state = {
+    postText: ""
+  }
+
+  componentDidMount() {
+    this.props.navigation.setParams({
+      createPost: createPost,
+      getPostText: this.getPostText,
+    });
+  }
+
+  getPostText = () => {
+    return this.state.postText;
+  }
 
   render() {
     return (
-      <View style={{ backgroundColor: '#ffffff', flex: 1 }}>
+
         <FormInput
-          placeholder={'Compose...'}
-          numberOfLines={150}
-        />
-      </View>
+        containerStyle={{ flex: 1, justifyContent: 'center', alignItems: 'center'}} 
+        inputStyle={{
+          backgroundColor: '#fff',
+          flex: 1,
+          alignItems: 'stretch',
+          paddingLeft: 10,
+          paddingRight: 10,
+        }}
+        numberOfLines={10}
+        placeholder={'Input your questions here'}
+        onChangeText={(text) => this.setState({ postText: text })}
+        value={this.state.postText}
+        multiline />
+
     )
   }
 }
-
-export default PostScreen;

@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 
-export default class CategoryScreen extends Component {
+class TutorScreen extends Component {
+   state = {}
    render() {
       return (
          <View>
             <Text>
-               CategoryScreen
+               TutorScreen
             </Text>
          </View>
       );
    }
 }
+
+export {TutorScreen};

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "alpha",
-    "description": "An empty new project",
+    "name": "Stubu",
+    "description": "A social application for Students and Tutors",
     "slug": "alpha",
     "privacy": "public",
     "sdkVersion": "19.0.0",
@@ -17,7 +17,11 @@
       "assetExts": ["ttf", "mp4"]
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.stubuinc.stubu"
+    },
+    "android": {
+      "package": "com.stubuinc.stubu"
     }
   }
 }

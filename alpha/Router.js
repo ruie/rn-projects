@@ -1,4 +1,4 @@
-import { Platform, StatusBar, Image } from 'react-native';
+import { Platform, StatusBar } from 'react-native';
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
 
 import LoginScreen from './screens/LoginScreen';
@@ -9,21 +9,14 @@ import FilterScreen from './screens/FilterScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import CategoryScreen from './screens/CategoryScreen';
 
-const Main = StackNavigator({
-   LoginScreen: {
-      screen: LoginScreen,
-      navigationOptions: {
-         header: null,
-         tabBarVisible: false,
-      },   
-   },
+const FeedStack = StackNavigator({
    StudentScreen: { screen: StudentScreen },
    TutorScreen: { screen: TutorScreen },
-   FilterScreen: { screen: FilterScreen },
    PostScreen: { screen: PostScreen },
+   FilterScreen: { screen: FilterScreen },
    CategoryScreen: { screen: CategoryScreen }
 }, {
-   lazy: true,
+   mode: 'modal',
    navigationOptions: {
       headerTitleStyle: {
          color: '#ffffff',
@@ -37,11 +30,29 @@ const Main = StackNavigator({
          paddingLeft: 10,
       },
    },
-   
+})
+
+const ProfileStack = StackNavigator({
+   ProfileScreen: { screen: ProfileScreen },
+}, {
+   navigationOptions: {
+      headerTitleStyle: {
+         color: '#ffffff',
+         fontWeight: 'bold',
+         alignSelf: 'center'
+      },
+      headerStyle: {
+         backgroundColor: '#48B25D',
+         marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+         paddingRight: 10,
+         paddingLeft: 10,
+      },
+   },
 });
 
-export default Navigator = TabNavigator({
-   Main: { screen: Main }
+const MainStack = TabNavigator({
+   FeedStack: { screen: FeedStack },
+   ProfileStack: { screen: ProfileStack }
 }, {
    tabBarComponent: TabBarBottom,
    tabBarPosition: 'bottom',
@@ -52,10 +63,18 @@ export default Navigator = TabNavigator({
       showIcon: true,
       showLabel: false,
       style: {
-         backgroundColor: '#48B25D',
+         backgroundColor: '#48B25D', 
       },
       activeTintColor: '#000000',
       inactiveTintColor: '#ffffff',
    },
 });
 
+export const Navigator = StackNavigator({
+   LoginScreen: { screen: LoginScreen},
+   MainStack: { screen: MainStack }
+}, {
+   initialRouteName: 'LoginScreen',
+   headerMode: 'none',
+   lazy: true,
+})

@@ -1,19 +1,23 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { createStore, connect } from 'redux';
+
+import { connect } from 'redux';
 import { Provider } from 'react-redux';
 
 import store from './store';
-import Navigator from './Navigator';
+import * as Router from './Router';
 
-export default class App extends React.Component {
+
+class App extends React.Component {
 
 	render() {
 		return (
 			<Provider store={store}>
-				<Navigator />
+				<Router.Navigator />
 			</Provider>
 		);
 	}
 
 }
+
+export default App;

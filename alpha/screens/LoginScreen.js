@@ -1,65 +1,62 @@
-import React, { Component } from "react";
-import { Text, View, AsyncStorage } from "react-native";
+import React, { Component } from 'react';
+import { Text, View, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
+import { Button } from 'react-native-elements';
 import { NavigationActions } from 'react-navigation';
 import { DoubleBounce } from 'react-native-loader';
-import { Button } from 'react-native-elements'
 
 import * as actions from '../actions';
+import firebase, { firebaseAuth } from '../api/firebase';
 
 class LoginScreen extends Component {
 
-  componentWillMount() {
-    // AsyncStorage.removeItem('fb_token');
-    // this.props.facebookLogin();
-    console.log(this.props.token);
+	componentWillMount() {
+		// firebaseAuth.signOut();
+		// AsyncStorage.removeItem('fb_token');
+		this.props.willAuth(true);
+		firebaseAuth.onAuthStateChanged(async (user) => {
+			let hasToken = await AsyncStorage.getItem('fb_token');
+			console.log('login', hasToken)
+			if (user || hasToken) {
+				console.log('login', user)
+				this.props.authState(true);
+				this.redirectScreen('MainStack');
+			} else {
+				this.props.authState(false);
+			}
+		})
+	}
 
-  }
+	redirectScreen = route => this.props.navigation.dispatch(
+		NavigationActions.reset({ index: 0, actions: [NavigationActions.navigate({ routeName: route })] })
+	);
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.token) {
-      this.redirectScreen('StudentScreen');
-    }
-  }
-
-  redirectScreen = route => this.props.navigation.dispatch(
-    NavigationActions.reset({ index: 0, actions: [NavigationActions.navigate({ routeName: route })] })
-  );
-
-  render() {
-    if(this.props.isAuth) {
-      return (
-        <View>
-          <DoubleBounce size={10} color="#52AB42" />
-        </View>
-      );     
-    } 
-    
-    if (this.props.token === null) {
-      return (
-        <View>
-          {this.redirectScreen('StudentScreen')}
-        </View>
-      )
-      } else {
-      return (
-        <View>
-          <Button
-            onPress={() => this.props.facebookLogin()}         
-            title='BUTTON'
-          />
-        </View>
-      );
-    }  
-  }
+	render() {
+		if (this.props.loading) {
+			return (
+				<View>
+					<DoubleBounce size={10} color="#52AB42" />
+				</View>
+			);
+			
+		} else {
+			return (
+				<View>
+					<Button
+						title={'Login FB'}
+						onPress={() => {
+							  this.props.LoginWithFacebook()  
+						}}
+					/>
+				</View>
+			);
+		}
+	}
 
 }
 
 function mapStateToProps({ auth }) {
-   return { 
-     token: auth.token,
-     isAuth: auth.isAuth
-    }
+	return { isAuth: auth.isAuth, auth: auth.auth, loading: auth.loading };
 }
 
 export default connect(mapStateToProps, actions)(LoginScreen);
