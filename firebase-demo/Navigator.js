@@ -1,17 +1,32 @@
-import { StackNavigator, TabNavigator } from 'react-navigation';
+import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
 
-import * as Screen from './screens';
-import * as Router from './router';
+import { LoginScreen } from './screens/LoginScreen';
+import * as Stacks from './stacks';
 
 export const Login = StackNavigator({
-   LoginScreen: { screen: Screen.LoginScreen },
+   LoginScreen: { screen: LoginScreen },
 }, {
    headerMode: 'none'
 });
 
 export const Main = TabNavigator({
-   Feed: { screen: Router.FeedStack },
-   Message: { screen: Router.MessageStack },
-   Info: { screen: Router.InfoStack }
+   Feed: { screen: Stacks.FeedStack },
+   Message: { screen: Stacks.MessageStack },
+   Info: { screen: Stacks.InfoStack }
+}, {
+      tabBarComponent: TabBarBottom,
+      tabBarPosition: 'bottom',
+      swipeEnabled: false,
+      animationEnabled: false,
+      tabBarOptions: {
+         showIcon: true,
+         showLabel: false,
+         style: {
+            backgroundColor: '#48B25D',
+         },
+         activeTintColor: '#006F00',
+         inactiveTintColor: '#ffffff',
+
+      },
 });
 

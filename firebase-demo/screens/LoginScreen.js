@@ -13,10 +13,13 @@ class LoginScreen extends Component {
 
    renderStatus = () => {
       if(this.state.isLoading) {
-         return <Pulse size={30} color="#52AB42" />
+         return <Pulse size={30} color="#48B25D" />
       } else {
          return <Button
             title={'Login with Facebook'}
+            icon={{ name: 'facebook', type: 'font-awesome'}}
+            backgroundColor={'#48B25D'}
+            borderRadius={10}
             onPress={() => {
                this.setState({ isLoading: true })
                LoginWithFacebook();
@@ -41,9 +44,8 @@ class LoginScreen extends Component {
 const styles = {
    container: {
       flex: 1,
-      // alignItems: 'center',
+      backgroundColor: '#fff',
       justifyContent: 'space-around',
-      flexDirection: 'column',
    },
 };
 

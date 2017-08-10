@@ -9,6 +9,10 @@ import { fireabaseAuth } from './api/firebase';
 import { test } from './api/auth';
 import { Login, Main } from './Navigator';
 
+console.ignoredYellowBox = [
+  'Setting a timer'
+]
+
 export default class App extends React.Component {
 
   state = {

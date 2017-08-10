@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
+import { Icon, List, ListItem, Button } from 'react-native-elements';
+
 import { fireabaseAuth } from '../api/firebase';
-import { Button } from 'react-native-elements';
 import { LoginWithFacebook, test, logout } from '../api/auth';
 
 class FeedScreen extends Component {
+
+   static navigationOptions = {
+      headerLeft: <Icon name='open-book' type='entypo' color='#ffffff' />,
+   }
 
    render() {
       return (
@@ -13,6 +18,14 @@ class FeedScreen extends Component {
             <Button
                title={'Test'}
                onPress={() => test()}
+            />
+            <Button
+               title={'TutorScreen'}
+               onPress={() => this.props.navigation.navigate('TutorScreen')}
+            />
+            <Button
+               title={'PostScreen'}
+               onPress={() => this.props.navigation.navigate('PostScreen')}
             />
             <Button
                title={'Logout'}
@@ -26,9 +39,8 @@ class FeedScreen extends Component {
 const styles = {
    container: {
       flex: 1,
-      // alignItems: 'center',
+      backgroundColor: '#fff',
       justifyContent: 'space-around',
-      flexDirection: 'column',
    },
 };
 

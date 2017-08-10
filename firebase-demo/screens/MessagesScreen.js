@@ -5,7 +5,7 @@ class MessagesScreen extends Component {
    state = {}
    render() {
       return (
-         <View>
+         <View style={styles.container}>
             <Text>
                MessagesScreen
             </Text>
@@ -13,5 +13,13 @@ class MessagesScreen extends Component {
       );
    }
 }
+
+const styles = {
+   container: {
+      flex: 1,
+      backgroundColor: '#fff',
+      justifyContent: 'space-around',
+   },
+};
 
 export {MessagesScreen};

@@ -5,7 +5,7 @@ class ProfileScreen extends Component {
    state = {}
    render() {
       return (
-         <View>
+         <View style={styles.container}>
             <Text>
                ProfileScreen
             </Text>
@@ -13,5 +13,13 @@ class ProfileScreen extends Component {
       );
    }
 }
+
+const styles = {
+   container: {
+      flex: 1,
+      backgroundColor: '#fff',
+      justifyContent: 'space-around',
+   },
+};
 
 export {ProfileScreen};
