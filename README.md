@@ -1,2 +1,2 @@
 # RN-Projects
-Updating this project later. Kinda busy with some things
+Updating this project later
